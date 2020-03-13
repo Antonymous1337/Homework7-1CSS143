@@ -18,14 +18,33 @@ public class ArrayDictionaryTest {
         // homework
 
         // set 1
+        ArrayDictionary empty = new ArrayDictionary(1);
+        assertTrue(!empty.remove(-1));
+        assertTrue(!empty.remove(0));
+        assertTrue(!empty.remove(1));
 
+        ArrayDictionary testNoCollision = new ArrayDictionary(5);
+        testNoCollision.add(0, 100);
+        testNoCollision.add(1, 101);
+        testNoCollision.add(3, 101);
+        assertTrue(testNoCollision.remove(0));
+        assertTrue(testNoCollision.remove(1));
+        assertTrue(!testNoCollision.remove(2));
+        assertTrue(testNoCollision.remove(3));
+        assertTrue(!testNoCollision.remove(4));
 
-
-
-
-
-
-        assertTrue(false);  // place holder
+        ArrayDictionary testCollision = new ArrayDictionary(5);
+        testCollision.add(0, 100);
+        testCollision.add(2, 102);
+        testCollision.add(10, 110);
+        testCollision.add(20, 120);
+        assertTrue(testCollision.remove(0));
+        assertTrue(testCollision.remove(2));
+        assertTrue(!testCollision.remove(3));
+        assertTrue(!testCollision.remove(5));
+        assertTrue(testCollision.remove(10));
+        assertTrue(!testCollision.remove(15));
+        assertTrue(testCollision.remove(20));
     }
 
     @Test
